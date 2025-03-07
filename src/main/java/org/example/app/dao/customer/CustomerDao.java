@@ -1,7 +1,7 @@
 package org.example.app.dao.customer;
 
-import org.example.app.dto.user.CustomerDtoRequest;
-import org.example.app.entity.user.Customer;
+import org.example.app.dto.customer.CustomerDtoRequest;
+import org.example.app.entity.customer.Customer;
 import org.example.app.dao.BaseDao;
 
 import java.util.List;
@@ -16,7 +16,8 @@ public interface CustomerDao extends BaseDao<Customer, CustomerDtoRequest> {
     Optional<Customer> getLastEntity();
 
     // ---- Query Params ----------------------
-    Optional<List<Customer>> fetchByFirstName(String firstName);
-    Optional<List<Customer>> fetchByLastName(String lastName);
+    Optional<List<Customer>> fetchByName(String name);
+    Optional<List<Customer>> fetchByPhone(String phone);
+    Optional<List<Customer>> fetchByAddress(String address);
     Optional<List<Customer>> fetchAllOrderBy(String orderBy);
 }

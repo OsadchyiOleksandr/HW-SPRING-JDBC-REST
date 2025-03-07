@@ -93,7 +93,7 @@ class org.example.app.dao.customer.CustomerDaoImpl {
 }
 
 
-class org.example.app.dto.user.CustomerDtoGetByIdResponse {
+class org.example.app.dto.customer.CustomerDtoGetByIdResponse {
 - int statusCode
 - String reasonPhrase
 - boolean success
@@ -116,7 +116,7 @@ class org.example.app.config.AppInitializer {
 # String[] getServletMappings()
 }
 
-class org.example.app.dto.user.CustomerDtoRequest {
+class org.example.app.dto.customer.CustomerDtoRequest {
 - Long id
 - String firstName
 - String lastName
@@ -142,7 +142,7 @@ class org.example.app.controller.CustomerController {
 }
 
 
-class org.example.app.dto.user.CustomerDtoUpdateResponse {
+class org.example.app.dto.customer.CustomerDtoUpdateResponse {
 - int statusCode
 - String reasonPhrase
 - boolean success
@@ -165,7 +165,7 @@ class org.example.app.config.AppContext {
 }
 
 
-class org.example.app.dto.user.CustomerDtoListResponse {
+class org.example.app.dto.customer.CustomerDtoListResponse {
 - int statusCode
 - String reasonPhrase
 - boolean success
@@ -182,7 +182,7 @@ class org.example.app.dto.user.CustomerDtoListResponse {
 }
 
 
-class org.example.app.dto.user.CustomerDtoCreateResponse {
+class org.example.app.dto.customer.CustomerDtoCreateResponse {
 - int statusCode
 - String reasonPhrase
 - boolean success
@@ -199,7 +199,7 @@ class org.example.app.dto.user.CustomerDtoCreateResponse {
 }
 
 
-class org.example.app.entity.user.Customer {
+class org.example.app.entity.customer.Customer {
 - Long id
 - String firstName
 - String lastName
@@ -309,11 +309,11 @@ class org.example.app.controller.ProductController {
 }
 
 
-class org.example.app.entity.user.CustomerMapper {
+class org.example.app.entity.customer.CustomerMapper {
 + User mapRow(ResultSet,int)
 }
 
-class org.example.app.dto.user.CustomerDtoGetLastEntityResponse {
+class org.example.app.dto.customer.CustomerDtoGetLastEntityResponse {
 - int statusCode
 - String reasonPhrase
 - boolean success
@@ -330,7 +330,7 @@ class org.example.app.dto.user.CustomerDtoGetLastEntityResponse {
 }
 
 
-class org.example.app.service.user.CustomerServiceImpl {
+class org.example.app.service.customer.CustomerServiceImpl {
 ~ UserDao userDao
 + User create(UserDtoRequest)
 + List<User> fetchAll()
@@ -369,7 +369,7 @@ interface org.example.app.dao.BaseDao {
 ~ boolean deleteById(Long)
 }
 
-interface org.example.app.service.user.CustomerService {
+interface org.example.app.service.customer.CustomerService {
 ~ User create(UserDtoRequest)
 ~ List<User> fetchAll()
 ~ User fetchById(Long)
@@ -381,7 +381,7 @@ interface org.example.app.service.user.CustomerService {
 ~ List<User> fetchAllOrderBy(String)
 }
 
-class org.example.app.dto.user.CustomerDtoDeleteResponse {
+class org.example.app.dto.customer.CustomerDtoDeleteResponse {
 - int statusCode
 - String reasonPhrase
 - boolean success
@@ -420,9 +420,9 @@ org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServle
 org.example.app.service.product.ProductService <|.. org.example.app.service.product.ProductServiceImpl
 org.springframework.jdbc.core.RowMapper <|.. org.example.app.entity.product.ProductMapper
 org.example.app.service.BaseService <|-- org.example.app.service.product.ProductService
-org.springframework.jdbc.core.RowMapper <|.. org.example.app.entity.user.CustomerMapper
-org.example.app.service.user.CustomerService <|.. org.example.app.service.user.CustomerServiceImpl
-org.example.app.service.BaseService <|-- org.example.app.service.user.CustomerService
+org.springframework.jdbc.core.RowMapper <|.. org.example.app.entity.customer.CustomerMapper
+org.example.app.service.customer.CustomerService <|.. org.example.app.service.customer.CustomerServiceImpl
+org.example.app.service.BaseService <|-- org.example.app.service.customer.CustomerService
 org.example.app.dao.product.ProductDao <|.. org.example.app.dao.product.ProductDaoImpl
 org.springframework.web.servlet.config.annotation.WebMvcConfigurer <|.. org.example.app.config.WebConfig
 @enduml

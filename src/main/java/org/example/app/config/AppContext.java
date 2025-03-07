@@ -11,19 +11,8 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import javax.sql.DataSource;
 import java.util.Objects;
 
-// @Configuration використовується для вказівки того,
-// що клас конфігурації оголошує один або кілька
-// методів @Bean.
-// Ці класи обробляються контейнером Spring для генерації
-// визначень bean-компонентів та запитів на обслуговування
-// для цих bean-компонентів під час виконання.
 @Configuration
-// @ComponentScan використовується для вказівки базових пакетів
-// для сканування компонентів.
 @ComponentScan("org.example.app")
-// @PropertySource забезпечує механізм додавання
-// PropertySource в Spring Environment для використання
-// у поєднанні з класами @Configuration.
 @PropertySource("classpath:app.properties")
 public class AppContext {
 

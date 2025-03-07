@@ -1,6 +1,6 @@
-package org.example.app.dto.user;
+package org.example.app.dto.customer;
 
-import org.example.app.entity.user.Customer;
+import org.example.app.entity.customer.Customer;
 import org.springframework.http.HttpStatus;
 
 public record CustomerDtoGetLastEntityResponse(

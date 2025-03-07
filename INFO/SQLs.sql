@@ -5,7 +5,7 @@
 -- Тому такий функціонал у додатку не прописуємо.
 -- Можемо створити БД через візуальний інструмент, наприклад,
 -- MySQL Workbench.
-CREATE DATABASE demo_db;
+CREATE DATABASE hwSpringJDBC;
 
 
 -- ТАБЛИЦІ
@@ -17,21 +17,14 @@ CREATE DATABASE demo_db;
 -- Можемо створити таблиці БД через візуальний інструмент, наприклад,
 -- MySQL Workbench.
 
-CREATE TABLE IF NOT EXISTS users
+CREATE TABLE IF NOT EXISTS customers
 ( id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  first_name VARCHAR(255) NOT NULL,
-  last_name VARCHAR(255) NOT NULL,
-  email VARCHAR(255) NOT NULL
+  name VARCHAR(255) NOT NULL,
+  phone VARCHAR(255) NOT NULL,
+  address VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS products
-( id BIGINT NOT NULL AUTO_INCREMENT,
-  name VARCHAR(255) NOT NULL,
-  measure VARCHAR(255) NOT NULL,
-  quota DECIMAL(5,2) NOT NULL,
-  price DECIMAL(6,2) NOT NULL,
-  PRIMARY KEY (id)
-);
+
 
 
 

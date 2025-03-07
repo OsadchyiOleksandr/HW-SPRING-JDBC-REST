@@ -1,7 +1,7 @@
-package org.example.app.service.user;
+package org.example.app.service.customer;
 
-import org.example.app.dto.user.CustomerDtoRequest;
-import org.example.app.entity.user.Customer;
+import org.example.app.dto.customer.CustomerDtoRequest;
+import org.example.app.entity.customer.Customer;
 import org.example.app.service.BaseService;
 
 import java.util.List;
@@ -15,7 +15,8 @@ public interface CustomerService extends BaseService<Customer, CustomerDtoReques
     Customer getLastEntity();
 
     // ---- Query Params ----------------------
-    List<Customer> fetchByFirstName(String firstName);
-    List<Customer> fetchByLastName(String lastName);
+    List<Customer> fetchByName(String name);
+    List<Customer> fetchByPhone(String phone);
+    List<Customer> fetchByAddress(String address);
     List<Customer> fetchAllOrderBy(String orderBy);
 }

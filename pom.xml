@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example.app</groupId>
-    <artifactId>Spring-Jdbc-Rest</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>HW-SPRING-JDBC-REST</artifactId>
+    <version>Build-Alpha-1.0.1</version>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -69,14 +69,6 @@
 
     <build>
         <plugins>
-            <!--
-                https://maven.apache.org/plugins/maven-war-plugin/plugin-info.html
-                https://maven.apache.org/plugins/maven-war-plugin/usage.html
-                УВАГА. В Java веб-додатках web.xml є стандартною назвою дескриптора
-                розгортання.
-                В багатьох випадках файл web.xml може взагалі не знадобитися.
-                Для запобігання помилки, в <failOnMissingWebXml> прописуємо false.
-            -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
@@ -85,19 +77,6 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
-            <!--
-                Через плагін залежностей Maven, можемо знайти залежності,
-                які не використовуються в нашому проекті.
-                Корисно коли кількість залежностей достатньо велика.
-                Команда для перевіки (можна запустити через вкладку Maven в IDE)
-                $ mvn dependency:analyze
-                виявляє невикористані залежності шляхом сканування байт-коду
-                нашої програми, тому може статися, що деякі залежності,
-                які використовуються лише під час виконання (runtime),
-                будуть виявлені неправильно.
-                Тоді, треба перерахувати відповідні залежності всередині
-                властивості usedDependencies.
-            -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>

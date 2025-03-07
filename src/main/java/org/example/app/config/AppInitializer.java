@@ -2,12 +2,6 @@ package org.example.app.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-// Необхідно оголосити та зіставити DispatcherServlet
-// для обробки всіх запитів.
-// https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-servlet.html
-// https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-servlet/context-hierarchy.html
-// Можна використовувати клас AbstractAnnotationConfigDispatcherServletInitializer
-// для реєстрації та програмної ініціалізації DispatcherServlet.
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override

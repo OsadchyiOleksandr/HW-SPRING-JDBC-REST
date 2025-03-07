@@ -1,6 +1,6 @@
-package org.example.app.dto.user;
+package org.example.app.dto.customer;
 
-import org.example.app.entity.user.Customer;
+import org.example.app.entity.customer.Customer;
 import org.springframework.http.HttpStatus;
 
 public record CustomerDtoCreateResponse(
@@ -12,19 +12,6 @@ public record CustomerDtoCreateResponse(
 
     public static final String SUCCESS_MESSAGE = "Customer has been created successfully.";
     public static final String FAILURE_MESSAGE = "Customer has not been created!";
-
-//    public static CustomerDtoCreateResponse of(boolean isUserCreated, Customer user) {
-//        if (isUserCreated)
-//            return new CustomerDtoCreateResponse(
-//                    HttpStatus.OK.value(),
-//                    HttpStatus.OK.getReasonPhrase(),
-//                    true, SUCCESS_MESSAGE, user);
-//        else
-//            return new CustomerDtoCreateResponse(
-//                    HttpStatus.NO_CONTENT.value(),
-//                    HttpStatus.NO_CONTENT.getReasonPhrase(),
-//                    false, FAILURE_MESSAGE, null);
-//    }
 
     public static CustomerDtoCreateResponse of(boolean isUserCreated, Customer user) {
         // ternary operator usage

@@ -1,0 +1,4 @@
+УВАГА. Альтернативне ДЗ 39.
+На прикладі проекту Spring-Jdbc-Rest (додається до заняття 39) зробіть проект Spring-Jdbc-Customer.
+Customer має: name, phone, address.
+Надайте відповідні SQL-запити в INFO/SQLs.sql та REST-запити в INFO/REST.txt.

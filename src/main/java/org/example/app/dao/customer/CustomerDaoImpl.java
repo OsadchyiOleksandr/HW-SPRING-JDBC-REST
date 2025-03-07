@@ -1,23 +1,11 @@
 package org.example.app.dao.customer;
 
-import org.example.app.dto.user.CustomerDtoRequest;
-import org.example.app.entity.user.Customer;
-import org.example.app.entity.user.CustomerMapper;
+import org.example.app.dto.customer.CustomerDtoRequest;
+import org.example.app.entity.customer.Customer;
+import org.example.app.entity.customer.CustomerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-// Class MapSqlParameterSource - реалізація SqlParameterSource,
-// яка містить певний Map параметрів.
-// https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/core/namedparam/MapSqlParameterSource.html
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-// Class NamedParameterJdbcTemplate - клас шаблону з базовим набором
-// операцій JDBC, що дозволяє використовувати іменовані параметри
-// замість традиційних '?' заповнювачів.
-// https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/core/namedparam/NamedParameterJdbcTemplate.html
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-// Interface SqlParameterSource - інтерфейс, який визначає спільну
-// функціональність для об’єктів, які можуть пропонувати значення
-// параметрів для іменованих параметрів SQL, які служать аргументом
-// для операцій NamedParameterJdbcTemplate.
-// https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/core/namedparam/SqlParameterSource.html
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
@@ -25,19 +13,9 @@ import javax.sql.DataSource;
 import java.util.List;
 import java.util.Optional;
 
-// Named parameters are used in SQL-queries
 @Repository ("CustomerDaoImpl")
 public class CustomerDaoImpl implements CustomerDao {
 
-    /*
-        Spring NamedParameterJdbcTemplate — це клас шаблону
-        з базовим набором операцій JDBC, що дозволяє використовувати
-        іменовані параметри замість традиційного '?'
-        (заповнювачі/placeholders).
-        Після заміни іменованих параметрів на стиль JDBC,
-        NamedParameterJdbcTemplate делегує обернутому JdbcTemplate
-        свою роботу.
-    */
     NamedParameterJdbcTemplate template;
 
     @Autowired
@@ -47,20 +25,20 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public boolean create(CustomerDtoRequest request) {
-        String sql = "INSERT INTO users (first_name, " +
-                "last_name, email) " +
-                "VALUES (:firstName, :lastName, :email)";
+        String sql = "INSERT INTO customers (name, " +
+                "phone, address) " +
+                "VALUES (:name, :phone, :address)";
         SqlParameterSource paramSource =
                 new MapSqlParameterSource()
-                .addValue("firstName", request.firstName())
-                .addValue("lastName", request.lastName())
-                .addValue("email", request.email());
+                .addValue("name", request.firstName())
+                .addValue("phone", request.lastName())
+                .addValue("address", request.email());
         return template.update(sql, paramSource) > 0;
     }
 
     @Override
     public Optional<List<Customer>> fetchAll() {
-        String sql = "SELECT * FROM users";
+        String sql = "SELECT * FROM customers";
         Optional<List<Customer>> optional;
         try {
             optional = Optional.of(template
@@ -73,7 +51,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public Optional<Customer> fetchById(Long id) {
-        String sql = "SELECT * FROM users " +
+        String sql = "SELECT * FROM customers " +
                 "WHERE id = :id LIMIT 1";
         SqlParameterSource paramSource =
                 new MapSqlParameterSource("id", id);
@@ -89,21 +67,21 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public boolean updateById(Long id, CustomerDtoRequest request) {
-        String sql = "UPDATE users " +
-                "SET first_name = :firstName, last_name = :lastName, " +
-                "email = :email " +
+        String sql = "UPDATE customers " +
+                "SET name = :name, phone = :phone, " +
+                "address = :address " +
                 "WHERE id = :id";
         SqlParameterSource paramSource = new MapSqlParameterSource()
-                .addValue("firstName", request.firstName())
-                .addValue("lastName", request.lastName())
-                .addValue("email", request.email())
+                .addValue("name", request.firstName())
+                .addValue("phone", request.lastName())
+                .addValue("address", request.email())
                 .addValue("id", id);
         return template.update(sql, paramSource) > 0;
     }
 
     @Override
     public boolean deleteById(Long id) {
-        String sql = "DELETE FROM users WHERE id = :id";
+        String sql = "DELETE FROM customers WHERE id = :id";
         SqlParameterSource paramSource =
                 new MapSqlParameterSource("id", id);
         return template.update(sql, paramSource) > 0;
@@ -111,7 +89,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public Optional<Customer> getLastEntity() {
-        String sql = "SELECT * FROM users " +
+        String sql = "SELECT * FROM customers " +
                 "ORDER BY id DESC LIMIT 1";
         SqlParameterSource paramSource =
                 new MapSqlParameterSource();
@@ -127,10 +105,10 @@ public class CustomerDaoImpl implements CustomerDao {
 
     // ---- Query Params ----------------------
 
-    public Optional<List<Customer>> fetchByFirstName(String firstName) {
-        String sql = "SELECT * FROM users WHERE first_name = :firstName";
+    public Optional<List<Customer>> fetchByName(String name) {
+        String sql = "SELECT * FROM customers WHERE name = :name";
         SqlParameterSource paramSource =
-                new MapSqlParameterSource("firstName", firstName);
+                new MapSqlParameterSource("name", name);
         Optional<List<Customer>> optional;
         try {
             optional = Optional.of(template
@@ -141,10 +119,24 @@ public class CustomerDaoImpl implements CustomerDao {
         return optional;
     }
 
-    public Optional<List<Customer>> fetchByLastName(String lastName) {
-        String sql = "SELECT * FROM users WHERE last_name = :lastName";
+    public Optional<List<Customer>> fetchByPhone(String phone) {
+        String sql = "SELECT * FROM customers WHERE phone = :phone";
         SqlParameterSource paramSource =
-                new MapSqlParameterSource("lastName", lastName);
+                new MapSqlParameterSource("phone", phone);
+        Optional<List<Customer>> optional;
+        try {
+            optional = Optional.of(template
+                    .query(sql,  paramSource, new CustomerMapper()));
+        } catch (Exception e) {
+            optional = Optional.empty();
+        }
+        return optional;
+    }
+
+    public Optional<List<Customer>> fetchByAddress(String address) {
+        String sql = "SELECT * FROM customers WHERE address = :address";
+        SqlParameterSource paramSource =
+                new MapSqlParameterSource("address", address);
         Optional<List<Customer>> optional;
         try {
             optional = Optional.of(template
@@ -156,7 +148,7 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     public Optional<List<Customer>> fetchAllOrderBy(String orderBy) {
-        String sql = "SELECT * FROM users ORDER BY " + orderBy;
+        String sql = "SELECT * FROM customers ORDER BY " + orderBy;
         Optional<List<Customer>> optional;
         try {
             optional = Optional.of(template

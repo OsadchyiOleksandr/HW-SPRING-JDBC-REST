@@ -1,8 +1,8 @@
-package org.example.app.service.user;
+package org.example.app.service.customer;
 
 import org.example.app.dao.customer.CustomerDao;
-import org.example.app.dto.user.CustomerDtoRequest;
-import org.example.app.entity.user.Customer;
+import org.example.app.dto.customer.CustomerDtoRequest;
+import org.example.app.entity.customer.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,20 +12,20 @@ import java.util.*;
 public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
-    CustomerDao userDao;
+    CustomerDao customerDao;
 
     @Override
     public Customer create(CustomerDtoRequest request) {
         Objects.requireNonNull(request,
                 "Parameter [request] must not be null!");
-        userDao.create(request);
-        return userDao.getLastEntity()
+        customerDao.create(request);
+        return customerDao.getLastEntity()
                 .orElse(null);
     }
 
     @Override
     public List<Customer> fetchAll() {
-        return userDao.fetchAll()
+        return customerDao.fetchAll()
                 .orElse(Collections.emptyList());
     }
 
@@ -33,7 +33,7 @@ public class CustomerServiceImpl implements CustomerService {
     public Customer fetchById(Long id) {
         Objects.requireNonNull(id,
                 "Parameter [id] must not be null!");
-        return userDao.fetchById(id)
+        return customerDao.fetchById(id)
                 .orElse(null);
     }
 
@@ -44,18 +44,18 @@ public class CustomerServiceImpl implements CustomerService {
         if (id == null) {
             throw new IllegalArgumentException("Id must be provided!");
         }
-        if (userDao.fetchById(id).isPresent()) {
-            userDao.updateById(id, request);
+        if (customerDao.fetchById(id).isPresent()) {
+            customerDao.updateById(id, request);
         }
-        return userDao.fetchById(id).orElse(null);
+        return customerDao.fetchById(id).orElse(null);
     }
 
     @Override
     public boolean deleteById(Long id) {
         Objects.requireNonNull(id,
                 "Parameter [id] must not be null!");
-        if (userDao.fetchById(id).isPresent()) {
-            userDao.deleteById(id);
+        if (customerDao.fetchById(id).isPresent()) {
+            customerDao.deleteById(id);
             return true;
         }
         return false;
@@ -63,25 +63,29 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer getLastEntity() {
-        return userDao.getLastEntity()
+        return customerDao.getLastEntity()
                 .orElse(null);
     }
 
     // ---- Query Params ----------------------
 
-    public List<Customer> fetchByFirstName(String firstName) {
-        return userDao.fetchByFirstName(firstName)
+    public List<Customer> fetchByName(String name) {
+        return customerDao.fetchByName(name)
                 .orElse(Collections.emptyList());
     }
 
-    public List<Customer> fetchByLastName(String lastName) {
-        return userDao.fetchByLastName(lastName)
+    public List<Customer> fetchByPhone(String phone) {
+        return customerDao.fetchByPhone(phone)
+                .orElse(Collections.emptyList());
+    }
+
+    public List<Customer> fetchByAddress(String address) {
+        return customerDao.fetchByAddress(address)
                 .orElse(Collections.emptyList());
     }
 
     public List<Customer> fetchAllOrderBy(String orderBy) {
-        return userDao.fetchAllOrderBy(orderBy)
+        return customerDao.fetchAllOrderBy(orderBy)
                 .orElse(Collections.emptyList());
     }
-
 }

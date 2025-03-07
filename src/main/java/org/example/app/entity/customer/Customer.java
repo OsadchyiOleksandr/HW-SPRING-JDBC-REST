@@ -1,4 +1,4 @@
-package org.example.app.entity.user;
+package org.example.app.entity.customer;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Customer {
     private Long id;
-    private String firstName;
-    private String lastName;
-    private String email;
+    private String name;
+    private String phone;
+    private String address;
 }

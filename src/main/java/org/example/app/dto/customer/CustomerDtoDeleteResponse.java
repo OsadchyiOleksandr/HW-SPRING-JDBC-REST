@@ -1,4 +1,4 @@
-package org.example.app.dto.user;
+package org.example.app.dto.customer;
 
 import org.springframework.http.HttpStatus;
 
