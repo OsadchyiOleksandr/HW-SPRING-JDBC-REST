@@ -11,8 +11,8 @@ public record CustomerDtoDeleteResponse(
     public static final String SUCCESS_MESSAGE = "Customer with id %s has been deleted successfully.";
     public static final String FAILURE_MESSAGE = "Customer with id %s has not been found!";
 
-    public static CustomerDtoDeleteResponse of(Long id, boolean isUserFound) {
-        if (isUserFound)
+    public static CustomerDtoDeleteResponse of(Long id, boolean isCustomerFound) {
+        if (isCustomerFound)
             return new CustomerDtoDeleteResponse(
                     HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(),

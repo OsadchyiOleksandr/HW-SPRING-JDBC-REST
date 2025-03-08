@@ -11,13 +11,13 @@ public record CustomerDtoListResponse(
         String reasonPhrase,
         boolean success,
         String message,
-        List<Customer> userList) {
+        List<Customer> customerList) {
 
     public static final String SUCCESS_MESSAGE = "Customer list has been fetched successfully.";
     public static final String FAILURE_MESSAGE = "Customer list has not been found!";
 
-    public static CustomerDtoListResponse of(boolean isUserListEmpty, List<Customer> userList) {
-        if (isUserListEmpty)
+    public static CustomerDtoListResponse of(boolean isCustomerListEmpty, List<Customer> customerList) {
+        if (isCustomerListEmpty)
             return new CustomerDtoListResponse(
                     HttpStatus.NOT_FOUND.value(),
                     HttpStatus.NOT_FOUND.getReasonPhrase(),
@@ -26,6 +26,6 @@ public record CustomerDtoListResponse(
             return new CustomerDtoListResponse(
                     HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(),
-                    true, SUCCESS_MESSAGE, userList);
+                    true, SUCCESS_MESSAGE, customerList);
     }
 }

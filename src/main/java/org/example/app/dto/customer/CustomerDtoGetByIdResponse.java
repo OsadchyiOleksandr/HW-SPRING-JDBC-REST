@@ -8,17 +8,17 @@ public record CustomerDtoGetByIdResponse(
         String reasonPhrase,
         boolean success,
         String message,
-        Customer user) {
+        Customer customer) {
 
     public static final String SUCCESS_MESSAGE = "Customer with id %s has been fetched successfully.";
     public static final String FAILURE_MESSAGE = "Customer with id %s has not been found!";
 
-    public static CustomerDtoGetByIdResponse of(Long id, boolean isUserFound, Customer user) {
-        if (isUserFound)
+    public static CustomerDtoGetByIdResponse of(Long id, boolean isCustomerFound, Customer customer) {
+        if (isCustomerFound)
             return new CustomerDtoGetByIdResponse(
                     HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(),
-                    true, SUCCESS_MESSAGE.formatted(id), user);
+                    true, SUCCESS_MESSAGE.formatted(id), customer);
         else
             return new CustomerDtoGetByIdResponse(
                     HttpStatus.NOT_FOUND.value(),

@@ -1,0 +1,44 @@
+Fists Deploy With disabled server
+echo "----------------------------" &&
+echo "----------------------------" &&
+echo "NEW BUILD" &&
+cd ~/IDEA/HW-SPRING-JDBC-REST &&
+mvn clean &&
+mvn install &&
+mvn war:war &&
+echo "DOWN TOMCAT" &&
+cd ~/Tomcat/apache-tomcat-10.1.36/bin &&
+echo "CLEAN TOMCAT" &&
+cd ~/Tomcat/apache-tomcat-10.1.36/webapps/ &&
+rm -rf HW-SPRING-JDBC-REST-Build-Alpha-1.0.1.war &&
+rm -rf HW-SPRING-JDBC-REST-Build-Alpha-1.0.1 &&
+cd ~/Tomcat/apache-tomcat-10.1.36/work/Catalina/localhost/ &&
+rm -rf HW-SPRING-JDBC-REST-Build-Alpha-1.0.1 &&
+echo "MOVE WAR FROM PROJECT TO TOMCAT" &&
+cp ~/IDEA/HW-SPRING-JDBC-REST/target/HW-SPRING-JDBC-REST-Build-Alpha-1.0.1.war ~/Tomcat/apache-tomcat-10.1.36/webapps/ &&
+echo "RUN TOMCAT" &&
+cd ~/Tomcat/apache-tomcat-10.1.36/bin &&
+./startup.sh
+
+
+echo "----------------------------" &&
+echo "----------------------------" &&
+echo "NEW BUILD" &&
+cd ~/IDEA/HW-SPRING-JDBC-REST &&
+mvn clean &&
+mvn install &&
+mvn war:war &&
+echo "DOWN TOMCAT" &&
+cd ~/Tomcat/apache-tomcat-10.1.36/bin &&
+./shutdown.sh &&
+echo "CLEAN TOMCAT" &&
+cd ~/Tomcat/apache-tomcat-10.1.36/webapps/ &&
+rm -rf HW-SPRING-JDBC-REST-Build-Alpha-1.0.1.war &&
+rm -rf HW-SPRING-JDBC-REST-Build-Alpha-1.0.1 &&
+cd ~/Tomcat/apache-tomcat-10.1.36/work/Catalina/localhost/ &&
+rm -rf HW-SPRING-JDBC-REST-Build-Alpha-1.0.1 &&
+echo "MOVE WAR FROM PROJECT TO TOMCAT" &&
+cp ~/IDEA/HW-SPRING-JDBC-REST/target/HW-SPRING-JDBC-REST-Build-Alpha-1.0.1.war ~/Tomcat/apache-tomcat-10.1.36/webapps/ &&
+echo "RUN TOMCAT" &&
+cd ~/Tomcat/apache-tomcat-10.1.36/bin &&
+./startup.sh

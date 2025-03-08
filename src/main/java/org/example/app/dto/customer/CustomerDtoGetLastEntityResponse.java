@@ -8,17 +8,17 @@ public record CustomerDtoGetLastEntityResponse(
         String reasonPhrase,
         boolean success,
         String message,
-        Customer user) {
+        Customer customer) {
 
     public static final String SUCCESS_MESSAGE = "Customer has been fetched successfully.";
     public static final String FAILURE_MESSAGE = "Customer has not been found!";
 
-    public static CustomerDtoGetLastEntityResponse of(boolean isUserFound, Customer user) {
-        if (isUserFound)
+    public static CustomerDtoGetLastEntityResponse of(boolean isCustomerFound, Customer customer) {
+        if (isCustomerFound)
             return new CustomerDtoGetLastEntityResponse(
                     HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(),
-                    true, SUCCESS_MESSAGE, user);
+                    true, SUCCESS_MESSAGE, customer);
         else
             return new CustomerDtoGetLastEntityResponse(
                     HttpStatus.NOT_FOUND.value(),

@@ -22,7 +22,6 @@ public class CustomerController {
     public ResponseEntity<CustomerDtoCreateResponse> createCustomer(
             @RequestBody CustomerDtoRequest request) {
         Customer customer = customerService.create(request);
-        // ternary operator usage
         return (customer != null) ?
                 ResponseEntity.status(HttpStatus.OK)
                         .body(CustomerDtoCreateResponse.of(true,

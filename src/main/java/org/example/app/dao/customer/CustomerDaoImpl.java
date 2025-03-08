@@ -30,9 +30,9 @@ public class CustomerDaoImpl implements CustomerDao {
                 "VALUES (:name, :phone, :address)";
         SqlParameterSource paramSource =
                 new MapSqlParameterSource()
-                .addValue("name", request.firstName())
-                .addValue("phone", request.lastName())
-                .addValue("address", request.email());
+                .addValue("name", request.name())
+                .addValue("phone", request.phone())
+                .addValue("address", request.address());
         return template.update(sql, paramSource) > 0;
     }
 
@@ -72,9 +72,9 @@ public class CustomerDaoImpl implements CustomerDao {
                 "address = :address " +
                 "WHERE id = :id";
         SqlParameterSource paramSource = new MapSqlParameterSource()
-                .addValue("name", request.firstName())
-                .addValue("phone", request.lastName())
-                .addValue("address", request.email())
+                .addValue("name", request.name())
+                .addValue("phone", request.phone())
+                .addValue("address", request.address())
                 .addValue("id", id);
         return template.update(sql, paramSource) > 0;
     }

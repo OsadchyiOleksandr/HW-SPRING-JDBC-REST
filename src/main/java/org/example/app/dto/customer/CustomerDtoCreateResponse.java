@@ -8,18 +8,17 @@ public record CustomerDtoCreateResponse(
         String reasonPhrase,
         boolean success,
         String message,
-        Customer user) {
+        Customer customer) {
 
     public static final String SUCCESS_MESSAGE = "Customer has been created successfully.";
     public static final String FAILURE_MESSAGE = "Customer has not been created!";
 
-    public static CustomerDtoCreateResponse of(boolean isUserCreated, Customer user) {
-        // ternary operator usage
-        return (isUserCreated) ?
+    public static CustomerDtoCreateResponse of(boolean isCustomerCreated, Customer customer) {
+        return (isCustomerCreated) ?
                 new CustomerDtoCreateResponse(
                         HttpStatus.OK.value(),
                         HttpStatus.OK.getReasonPhrase(),
-                        true, SUCCESS_MESSAGE, user) :
+                        true, SUCCESS_MESSAGE, customer) :
                 new CustomerDtoCreateResponse(
                         HttpStatus.NO_CONTENT.value(),
                         HttpStatus.NO_CONTENT.getReasonPhrase(),

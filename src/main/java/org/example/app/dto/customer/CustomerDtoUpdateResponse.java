@@ -9,17 +9,17 @@ CustomerDtoUpdateResponse(
         String reasonPhrase,
         boolean success,
         String message,
-        Customer user) {
+        Customer customer) {
 
     public static final String SUCCESS_MESSAGE = "Customer with id %s has been updated successfully.";
     public static final String FAILURE_MESSAGE = "Customer with id %s has not been found!";
 
-    public static CustomerDtoUpdateResponse of(Long id, boolean isUserFound, Customer userUpdated) {
-        if (isUserFound)
+    public static CustomerDtoUpdateResponse of(Long id, boolean isCustomerFound, Customer customerUpdated) {
+        if (isCustomerFound)
             return new CustomerDtoUpdateResponse(
                     HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(),
-                    true, SUCCESS_MESSAGE.formatted(id), userUpdated);
+                    true, SUCCESS_MESSAGE.formatted(id), customerUpdated);
         else
             return new CustomerDtoUpdateResponse(
                     HttpStatus.NOT_FOUND.value(),

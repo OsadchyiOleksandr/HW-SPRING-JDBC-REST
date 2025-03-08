@@ -13,7 +13,7 @@ https://www.postman.com/
 (1) Отримання даних
 
 GET
-http://localhost:8080/Your-Project-Name-1.0-SNAPSHOT/api/v1/users
+http://localhost:8080/HW-SPRING-JDBC-REST-Build-Alpha-1.0.1/api/v1/customers
 
 Даних, поки, немає.
 
@@ -21,58 +21,36 @@ http://localhost:8080/Your-Project-Name-1.0-SNAPSHOT/api/v1/users
 (2) Створення даних
 
 POST
-http://localhost:8080/Your-Project-Name-1.0-SNAPSHOT/api/v1/users
+http://localhost:8080/HW-SPRING-JDBC-REST-Build-Alpha-1.0.1/api/v1/customers
 
 Виконуємо окремі запити
 
 
-{
-    "firstName": "John",
-    "lastName": "Green",
-    "email": "john@mail.com"
-}
-
-{
-    "firstName": "Bob",
-    "lastName": "Bright",
-    "email": "bob@mail.com"
-}
-
-{
-    "firstName": "Alice",
-    "lastName": "Terra",
-    "email": "alice@mail.com"
-}
-
-{
-    "firstName": "Tom",
-    "lastName": "Bright",
-    "email": "tom@mail.com"
-}
-
-{
-    "firstName": "Lucy",
-    "lastName": "Moon",
-    "email": "lucy@mail.com"
-}
-
-{
-    "firstName": "David",
-    "lastName": "Terra",
-    "email": "d.terra@mail.com"
-}
-
-{
-    "firstName": "Mary",
-    "lastName": "Waters",
-    "email": "m.waters@mail.com"
-}
-
-{
-    "firstName": "Alice",
-    "lastName": "Bright",
-    "email": "a.bri@mail.com"
-}
+        {
+            "name": "Simon",
+            "phone": "+380971234567",
+            "address": "Central st. 212"
+        }
+        {
+            "name": "Irina",
+            "phone": "+380981087404",
+            "address": "Jhonson st 13"
+        }
+        {
+            "name": "Anastasiya",
+            "phone": "+380981087400",
+            "address": "Stone st 112"
+        }
+        {
+            "name": "Anastasiya Green",
+            "phone": "+380981447400",
+            "address": "Stone st 512"
+        }
+        {
+            "name": "Irina Green",
+            "phone": "+380941447400",
+            "address": "Shevchenko st 512"
+        }
 
 Перевіремо через MySQL Workbench.
 
@@ -80,13 +58,13 @@ http://localhost:8080/Your-Project-Name-1.0-SNAPSHOT/api/v1/users
 (3) Отримання всіх даних
 
 GET
-http://localhost:8080/Your-Project-Name-1.0-SNAPSHOT/api/v1/users
+http://localhost:8080/HW-SPRING-JDBC-REST-Build-Alpha-1.0.1/api/v1/customers
 
 
 (4) Отримання даних за id
 
 GET
-http://localhost:8080/Your-Project-Name-1.0-SNAPSHOT/api/v1/users/2
+http://localhost:8080/HW-SPRING-JDBC-REST-Build-Alpha-1.0.1/api/v1/customers/2
 
 Також, за неіснуючим id
 
@@ -97,23 +75,49 @@ http://localhost:8080/Your-Project-Name-1.0-SNAPSHOT/api/v1/users/17
 (5) Отримання останього запису в таблиці
 
 GET
-http://localhost:8080/Your-Project-Name-1.0-SNAPSHOT/api/v1/users/last-entity
+http://localhost:8080/HW-SPRING-JDBC-REST-Build-Alpha-1.0.1/api/v1/customers/last-entity
 
 
-(6) Отримання даних за Query Params тут
-src/main/java/org/example/app/controller/UserController.java
+(6) Отримання даних за Query Params
+http://localhost:8080/HW-SPRING-JDBC-REST-Build-Alpha-1.0.1/api/v1/customers/query-by-name?name=Anastasiya
+http://localhost:8080/HW-SPRING-JDBC-REST-Build-Alpha-1.0.1/api/v1/customers/query-by-phone?phone=%2B380971234567
+http://localhost:8080/HW-SPRING-JDBC-REST-Build-Alpha-1.0.1/api/v1/customers/query-by-address?address=Stone st 112
+
+http://localhost:8080/HW-SPRING-JDBC-REST-Build-Alpha-1.0.1/api/v1/customers/query-order-by?orderBy=name
+http://localhost:8080/HW-SPRING-JDBC-REST-Build-Alpha-1.0.1/api/v1/customers/query-order-by?orderBy=address
+http://localhost:8080/HW-SPRING-JDBC-REST-Build-Alpha-1.0.1/api/v1/customers/query-order-by?orderBy=phone
 
 
 (7) Оновлення даних за id
 
 PUT
-http://localhost:8080/Your-Project-Name-1.0-SNAPSHOT/api/v1/users/3
+http://localhost:8080/HW-SPRING-JDBC-REST-Build-Alpha-1.0.1/api/v1/customers/5
 
-{
-    "firstName": "Alice",
-    "lastName": "Sunny",
-    "email": "sunny@mail.com"
-}
+        {
+            "name": "Simon",
+            "phone": "+380971234567",
+            "address": "Central st. 212"
+        }
+        {
+            "name": "Irina",
+            "phone": "+380981087404",
+            "address": "Jhonson st 13"
+        }
+        {
+            "name": "Anastasiya",
+            "phone": "+380981087400",
+            "address": "Stone st 112"
+        }
+        {
+            "name": "Anastasiya Green",
+            "phone": "+380981447400",
+            "address": "Stone st 512"
+        }
+        {
+            "name": "Irina Green",
+            "phone": "+380941447400",
+            "address": "Shevchenko st 512"
+        }
 
 Перевіремо через MySQL Workbench та REST-запит за відповідним id.
 
@@ -123,7 +127,7 @@ http://localhost:8080/Your-Project-Name-1.0-SNAPSHOT/api/v1/users/3
 (8) Видалення даних за id
 
 DELETE
-http://localhost:8080/Your-Project-Name-1.0-SNAPSHOT/api/v1/users/4
+http://localhost:8080/HW-SPRING-JDBC-REST-Build-Alpha-1.0.1/api/v1/customers/5
 
 Перевіремо через MySQL Workbench, REST-запити отримання всіх даних
 та за відповідним id.
